@@ -1,5 +1,5 @@
 const CompanyLoginData = require("../datalayers/companyLogin.data");
-const dbConfig = require("../helpers/dbConfig");
+const dbChanger = require("../helpers/dbChanger");
 
 const companyLoginData = new CompanyLoginData();
 
@@ -18,11 +18,7 @@ class CompanyLoginManager {
         const module1 = result[0][0];
         const module2 = result[1][0];
         // Update  dbconfiguration
-        dbConfig.setdbConfig({
-            dbName: module2.dbName,
-            userName: module2.userName,
-            password: module2.password
-          });
+        dbChanger(module2);
         company = {
           companyID: module1.companyID,
           companyName: module1.companyName,
