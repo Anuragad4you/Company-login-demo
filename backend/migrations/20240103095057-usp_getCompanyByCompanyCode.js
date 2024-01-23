@@ -24,7 +24,7 @@ module.exports = {
 				SELECT * FROM companyLogins AS c
                 WHERE c.companyCode = companyCode;
                 
-                SET cID = (SELECT companyID FROM companyLogins WHERE companyCode = companyCode);
+                SET cID = (SELECT companyID FROM companyLogins as cl WHERE cl.companyCode = companyCode);
                 
                 SELECT * FROM dbConfigs AS db
                 WHERE db.companyID = cID;
