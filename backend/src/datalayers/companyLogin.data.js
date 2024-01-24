@@ -53,8 +53,6 @@ class CompanyLoginData {
                 type: db.QueryTypes.RAW,
             }
         );
-
-        console.log(result);
         return result;
     } catch (error) {
         throw error;

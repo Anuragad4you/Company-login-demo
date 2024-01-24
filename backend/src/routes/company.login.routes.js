@@ -1,8 +1,6 @@
 const { Router } = require("express");
 const logoUpload = require("../middlewares/upload");
 const CompanyLoginController = require("../controllers/companyLogin.controller");
-const {restartServer} = require("../middlewares/shell");
-
 const companyLoginController = new CompanyLoginController();
 const router = Router();
 

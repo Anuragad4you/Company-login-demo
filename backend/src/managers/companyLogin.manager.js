@@ -1,5 +1,6 @@
 const CompanyLoginData = require("../datalayers/companyLogin.data");
 const dbChanger = require("../helpers/dbChanger");
+const dbCreater = require("../helpers/dbCreater");
 
 const companyLoginData = new CompanyLoginData();
 
@@ -38,16 +39,30 @@ class CompanyLoginManager {
    * @returns {Object}
    */
   async updateCompanyLogin(req) {
-    // console.log("first",req.uploadedImage);
-    try {
+      try {
+        const dbConfig = {
+            database: `${req.body.companyCode}_db`,
+            userName: 'root',
+            password: 'Ssaha@11199',
+            host: process.env.HOST,
+            dialect: 'mysql'
+        }
+
         let uploadedImage = '';
         if(req.uploadedImage) {
             uploadedImage = req.uploadedImage;
             // console.log("first",uploadedImage);
         }
       const result = await companyLoginData.updateCompanyLogin(req, uploadedImage);
-      return result[0][0];
-    } catch (error) {}
+
+    // TODO: Calling dbCreating function
+    dbCreater(dbConfig);
+
+
+      return result[0];
+    } catch (error) {
+        console.log(error);
+    }
   }
 }
 

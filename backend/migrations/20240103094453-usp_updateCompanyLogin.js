@@ -28,12 +28,6 @@ module.exports = {
                 
 					-- Create a unique database name based on companyCode
 					SET @dbName = CONCAT(companyCode, '_db');
-
-					-- Create database
-					SET @createDbQuery = CONCAT('CREATE DATABASE IF NOT EXISTS ', @dbName);
-					PREPARE stmt FROM @createDbQuery;
-					EXECUTE stmt;
-					DEALLOCATE PREPARE stmt;
                     
                     -- Insert into companyLogins
                     INSERT INTO companyLogins(companyName, companyCode, companyLogo)
