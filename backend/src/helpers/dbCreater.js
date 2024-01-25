@@ -1,7 +1,5 @@
 const Sequelize = require("sequelize");
 const { exec } = require("child_process");
-const config = require("../../config/config.json");
-const { database, username, password, host, dialect } = config;
 
 const dbCreater = (dbConfig) => {
 
@@ -26,7 +24,13 @@ const dbCreater = (dbConfig) => {
       console.error("Error creating the database:", err);
     })
     .finally(() => {
-        sequelize = new Sequelize({database:dbConfig.database, username: dbConfig.userName, password: dbConfig.password, config});
+        const database = dbConfig.database;
+        const username = dbConfig.userName;
+        const password = dbConfig.password;
+        sequelize = new Sequelize(database, username, password, {
+            host: "127.0.0.1",
+            dialect: "mysql"
+        });
       sequelize
         .authenticate()
         .then(() => {
