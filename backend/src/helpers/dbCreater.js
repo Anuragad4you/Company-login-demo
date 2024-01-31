@@ -1,15 +1,18 @@
 const Sequelize = require("sequelize");
 const { exec } = require("child_process");
-const config = require("../../config/config.json");
+const config = require("../../config/config.json")['development'];
 const { database, username, password, host, dialect } = config;
 
 const dbCreater = (dbConfig) => {
+    console.log("dbcnfg",dbConfig);
 
   let sequelize = new Sequelize({
+    dialect: 'mysql',
     username: dbConfig.userName,
     password: dbConfig.password,
     host: dbConfig.host,
-    dialect: 'mysql',
+    database: dbConfig.database,
+   
   });
 
   //Logic for Create New Database if Not exist

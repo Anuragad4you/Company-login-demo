@@ -6,10 +6,11 @@ const dbChanger = (dbConfig) => {
     const sequelize = new Sequelize({
         dialect: 'mysql',
         host: '127.0.0.1',
-        username: dbConfig.userName,
+        username: dbConfig.username,
         password: dbConfig.password,
         database: dbConfig.dbName,
-        connectionLimit: 10,
+        connectionLimit:10,
+        
     });
     
     sequelize

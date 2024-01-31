@@ -18,6 +18,7 @@ class CompanyLoginManager {
       if (result && result.length > 0) {
         const module1 = result[0][0];
         const module2 = result[1][0];
+        // console.log("first",result);
         // Update  dbconfiguration
         dbChanger(module2);
         company = {
@@ -43,8 +44,8 @@ class CompanyLoginManager {
         const dbConfig = {
             database: `${req.body.companyCode}_db`,
             userName: 'root',
-            password: 'Ssaha@11199',
-            host: process.env.HOST,
+            password: 'root',
+            host: '127.0.0.1',
             dialect: 'mysql'
         }
 
