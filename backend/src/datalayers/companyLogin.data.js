@@ -1,3 +1,4 @@
+const {cilo} = require("../../models/index.js");
 const db = require("../../config/database.js");
 
 /**
@@ -53,6 +54,10 @@ class CompanyLoginData {
                 type: db.QueryTypes.RAW,
             }
         );
+
+        const tenant = await cilo.createTenant(companyCode);
+        cilo.setCurrentORM(tenant.subdomain);
+        
         return result;
     } catch (error) {
         throw error;

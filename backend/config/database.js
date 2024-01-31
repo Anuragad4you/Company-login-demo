@@ -4,7 +4,6 @@ const config = require("../config/config.json")[env];
 const { database, username, password, host, dialect } = config;
 const { exec } = require("child_process");
 
-
 let sequelize;
 if (config.use_env_variable) {
     sequelize = new Sequelize(process.env[config.use_env_variable], config);
